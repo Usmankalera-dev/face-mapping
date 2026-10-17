@@ -12,7 +12,7 @@
 <meta property="og:image" content="assets/ai-faces-478-mesh.png">
 <meta name="theme-color" content="#0b0f14">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
-<link rel="stylesheet" href="styles.css?v=6">
+<link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
 <div id="progress"></div>
@@ -239,6 +239,32 @@
       <tr><td>Mouth hidden</td><td>0.96</td><td>✅ barely affected</td></tr>
     </tbody>
   </table>
+  </div>
+  <h3>Landmark accuracy: repeatability test</h3>
+  <p>Same face, 12 variants (rotation, brightness, blur, noise, JPEG, downscale) — how far do the 68 points wander? Mean drift <strong>≈ 9 px</strong> on a 1024-px image; the model is fully <strong>deterministic</strong> (clean repeat = 0.00 px). Jawline and brow points drift most.</p>
+  <div class="grid2">
+    <figure class="card reveal">
+      <img src="assets/test-drift-heatmap.jpg" alt="Heatmap of 68 facial landmarks colored by drift in pixels" loading="lazy">
+      <figcaption>Per-landmark drift heatmap — red = stable, yellow = drifts</figcaption>
+    </figure>
+    <div class="card reveal">
+      <p class="swipe-hint">← swipe →</p>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Variant</th><th>Mean drift</th><th>Max drift</th></tr></thead>
+        <tbody>
+          <tr><td>Rotation ±5°</td><td>8.5 px</td><td>20.8 px</td></tr>
+          <tr><td>Brightness ±20</td><td>9.0 px</td><td>38.0 px</td></tr>
+          <tr><td>Blur k=7/15</td><td>7.6 px</td><td>19.0 px</td></tr>
+          <tr><td>Noise σ=15</td><td>8.1 px</td><td>17.0 px</td></tr>
+          <tr><td>JPEG q=50/20</td><td>11.1 px</td><td>39.1 px</td></tr>
+          <tr><td>3× downscale</td><td>10.6 px</td><td>42.1 px</td></tr>
+          <tr><td>Clean repeat</td><td>0.00 px</td><td>0.00 px</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="note" style="margin-top:1rem">Detection check (YuNet): found the face at <strong>every</strong> blur and noise level. Score held 0.48–0.67 — but the box wanders under heavy blur (IoU 1.00 → 0.22), so alignment quality drops before detection fails.</p>
+    </div>
   </div>
 </section>
 
