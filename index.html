@@ -12,7 +12,7 @@
 <meta property="og:image" content="assets/ai-faces-478-mesh.png">
 <meta name="theme-color" content="#0b0f14">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
-<link rel="stylesheet" href="styles.css?v=7">
+<link rel="stylesheet" href="styles.css?v=8">
 </head>
 <body>
 <div id="progress"></div>
@@ -28,6 +28,7 @@
     <a href="#cctv">CCTV System</a>
     <a href="#sachi">SachiEnhance</a>
     <a href="#tests">Lab Tests</a>
+    <a href="#training">Training</a>
     <a href="#code">Code</a>
   </nav>
 </header>
@@ -268,8 +269,25 @@
   </div>
 </section>
 
-<section id="code" class="block alt">
-  <p class="kicker">07 · Open code</p>
+<section id="training" class="block alt">
+  <p class="kicker">08 · Live training</p>
+  <h2>Face-ID <span class="amber">training</span>, for real</h2>
+  <p>Not a mockup — a real classifier trained in this lab: <strong>5 identities × 30 augmented samples</strong> (rotation, brightness, blur, flip) → 128-dim SFace embeddings → <strong>SVC</strong>. Train/test split 80/20.</p>
+  <div class="grid2">
+    <figure class="card reveal">
+      <img src="assets/train-confusion.png" alt="Confusion matrix: 38 of 38 test samples classified correctly" loading="lazy">
+      <figcaption>Confusion matrix — <strong>38/38 correct (100%)</strong> on held-out test set</figcaption>
+    </figure>
+    <figure class="card reveal">
+      <video src="assets/train-live-id.mp4?v=1" poster="assets/poster-train.jpg" controls preload="none" playsinline></video>
+      <figcaption>▶ Live inference — the trained model IDs faces in real frames (5/5 correct)</figcaption>
+    </figure>
+  </div>
+  <p class="note">Honest scope: 100% is on augmented variants of the same base photos — it proves robustness to imaging changes, not new-photo generalization. And one identity (a 32-px CCTV face) <strong>couldn't even be enrolled</strong> — the detector found nothing to train on. That failure is the finding.</p>
+</section>
+
+<section id="code" class="block">
+  <p class="kicker">09 · Open code</p>
   <h2>Run it yourself</h2>
   <p>Two small Python modules. Models download automatically from public sources (YuNet, SFace, FSRCNN).</p>
   <div class="codegrid">
