@@ -12,7 +12,7 @@
 <meta property="og:image" content="assets/ai-faces-478-mesh.png">
 <meta name="theme-color" content="#0b0f14">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
-<link rel="stylesheet" href="styles.css?v=5">
+<link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
 <div id="progress"></div>
@@ -212,6 +212,34 @@
   </table>
   </div>
   <p class="note">Honest note: detection is tougher than it looks here — recognition (telling <em>who</em>) is the harder problem, as the CCTV tests above show. Detection = “a face is there”; recognition = “whose face”.</p>
+  <h3>Biometric accuracy: genuine vs impostor</h3>
+  <p>Same person (with rotation, brightness, blur, downscale changes) vs different people — scored by SFace. The ranges <strong>overlap</strong>: no perfect threshold exists, which is exactly why the quality gate matters.</p>
+  <div class="grid2">
+    <figure class="card reveal">
+      <img src="assets/test-biometric.png" alt="Scatter chart: genuine scores 0.23-0.92 versus impostor scores 0.13-0.34, overlapping near the 0.40 threshold" loading="lazy">
+      <figcaption>Genuine 0.23–0.92 · Impostor 0.13–0.34 · overlap zone = hard cases</figcaption>
+    </figure>
+    <figure class="card reveal">
+      <img src="assets/test-occlusion.jpg" alt="Occlusion test: original face, eyes blacked out, mouth blacked out" loading="lazy">
+      <figcaption>Occlusion test — eyes hidden: 0.77 · mouth hidden: 0.96 (still recognized!)</figcaption>
+    </figure>
+  </div>
+  <p class="swipe-hint">← swipe to see full table →</p>
+  <div class="table-wrap reveal">
+  <table>
+    <thead><tr><th>Condition</th><th>Similarity</th><th>Reading</th></tr></thead>
+    <tbody>
+      <tr><td>Rotation ±5°</td><td>0.92 / 0.31</td><td>⚠️ asymmetric — direction matters to SFace</td></tr>
+      <tr><td>Rotation ±10°</td><td>0.27 / 0.72</td><td>❌ beyond ±5° is unreliable</td></tr>
+      <tr><td>Darkened −30</td><td>0.23</td><td>❌ poor lighting breaks it</td></tr>
+      <tr><td>Brightened +30</td><td>0.89</td><td>✅ fine</td></tr>
+      <tr><td>Heavy blur</td><td>0.82</td><td>✅ fine</td></tr>
+      <tr><td>4× downscale</td><td>0.30</td><td>❌ tiny faces fail (the CCTV problem)</td></tr>
+      <tr><td>Eyes hidden</td><td>0.77</td><td>✅ surprisingly robust</td></tr>
+      <tr><td>Mouth hidden</td><td>0.96</td><td>✅ barely affected</td></tr>
+    </tbody>
+  </table>
+  </div>
 </section>
 
 <section id="code" class="block alt">
