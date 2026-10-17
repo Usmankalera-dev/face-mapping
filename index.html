@@ -12,7 +12,7 @@
 <meta property="og:image" content="assets/ai-faces-478-mesh.png">
 <meta name="theme-color" content="#0b0f14">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
-<link rel="stylesheet" href="styles.css?v=1">
+<link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
 <div id="progress"></div>
@@ -48,7 +48,7 @@
     </div>
   </div>
   <div class="hero-media">
-    <img src="assets/ai-faces-478-mesh.png" alt="478-point neural face mesh on three AI-generated faces" fetchpriority="high">
+    <img src="assets/ai-faces-478-mesh.png" srcset="assets/ai-faces-478-mesh-800.jpg 800w, assets/ai-faces-478-mesh.png 1400w" sizes="(max-width: 860px) 100vw, 45vw" alt="478-point neural face mesh on three AI-generated faces" fetchpriority="high">
   </div>
 </section>
 
@@ -58,16 +58,16 @@
   <p>Classic facial landmark detection with a neural 2D-FAN model — jaw, brows, eyes, nose and mouth mapped with a Delaunay mesh. Works on single faces and groups.</p>
   <div class="grid2">
     <figure class="card reveal">
-      <img src="assets/ai-face-mapping.png" alt="68 facial landmarks with Delaunay mesh on a single AI-generated face" loading="lazy">
+      <img src="assets/ai-face-mapping.png" srcset="assets/ai-face-mapping-800.jpg 800w, assets/ai-face-mapping.png 1400w" sizes="(max-width: 860px) 100vw, 45vw" alt="68 facial landmarks with Delaunay mesh on a single AI-generated face" loading="lazy">
       <figcaption>Single face · 68 landmarks + Delaunay mesh</figcaption>
     </figure>
     <figure class="card reveal">
-      <img src="assets/ai-faces-multi-mapping.png" alt="68 facial landmarks mapped on three faces in a group photo" loading="lazy">
+      <img src="assets/ai-faces-multi-mapping.png" srcset="assets/ai-faces-multi-mapping-800.jpg 800w, assets/ai-faces-multi-mapping.png 1400w" sizes="(max-width: 860px) 100vw, 45vw" alt="68 facial landmarks mapped on three faces in a group photo" loading="lazy">
       <figcaption>Multi-face · 3 faces × 68 landmarks</figcaption>
     </figure>
   </div>
   <figure class="card wide reveal">
-    <video src="assets/ai-face-mapping-video.mp4" controls preload="metadata" playsinline></video>
+    <video src="assets/ai-face-mapping-video.mp4" poster="assets/poster-mapping.jpg" controls preload="none" playsinline></video>
     <figcaption>Per-frame 68-point tracking on video</figcaption>
   </figure>
 </section>
@@ -82,7 +82,7 @@
       <figcaption>478 points per face · neural mesh</figcaption>
     </figure>
     <figure class="card reveal">
-      <video src="assets/ai-neural-mesh-video.mp4" controls preload="metadata" playsinline></video>
+      <video src="assets/ai-neural-mesh-video.mp4" poster="assets/poster-neural.jpg" controls preload="none" playsinline></video>
       <figcaption>Neural mesh tracked on video, frame by frame</figcaption>
     </figure>
   </div>
@@ -93,10 +93,11 @@
   <h2>CCTV Face Recognition v2</h2>
   <p>A complete pipeline: <strong>YuNet</strong> detection → tracking → <strong>SachiEnhance</strong> → <strong>SFace</strong> recognition → best-frame selection → quality gate. Tested honestly on night-vision CCTV frames.</p>
   <figure class="card wide reveal">
-    <img src="assets/cctv-software-v2.png" alt="CCTV software v2 interface: night-vision frame with detected face, best-frame verdict UNKNOWN flagged for review" loading="lazy">
+    <img src="assets/cctv-software-v2.png" srcset="assets/cctv-software-v2-800.jpg 800w, assets/cctv-software-v2.png 1400w" sizes="100vw" alt="CCTV software v2 interface: night-vision frame with detected face, best-frame verdict UNKNOWN flagged for review" loading="lazy">
     <figcaption>Live system output — face detected at 32×40 px, verdict: UNKNOWN → flagged for human review</figcaption>
   </figure>
   <h3>The honest test</h3>
+  <p class="swipe-hint">← swipe to see full table →</p>
   <div class="table-wrap reveal">
   <table>
     <thead><tr><th>Test</th><th>Similarity</th><th>Result</th></tr></thead>
@@ -137,6 +138,7 @@
     </figure>
   </div>
   <h3>What helped vs what hurt</h3>
+  <p class="swipe-hint">← swipe to see full table →</p>
   <div class="table-wrap reveal">
   <table>
     <thead><tr><th>Technique</th><th>Δ similarity</th><th>Verdict</th></tr></thead>
@@ -194,6 +196,6 @@ print(s.identify_track(frames_12))</code></pre>
   <button id="toTop" aria-label="Back to top">↑</button>
 </footer>
 
-<script src="app.js?v=1"></script>
+<script src="app.js?v=2"></script>
 </body>
 </html>
