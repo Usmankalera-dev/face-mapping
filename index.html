@@ -12,7 +12,7 @@
 <meta property="og:image" content="assets/ai-faces-478-mesh.png">
 <meta name="theme-color" content="#0b0f14">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
-<link rel="stylesheet" href="styles.css?v=2">
+<link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
 <div id="progress"></div>
@@ -26,6 +26,7 @@
     <a href="#neural">478 Neural Mesh</a>
     <a href="#cctv">CCTV System</a>
     <a href="#sachi">SachiEnhance</a>
+    <a href="#tests">Lab Tests</a>
     <a href="#code">Code</a>
   </nav>
 </header>
@@ -158,8 +159,45 @@
   </figure>
 </section>
 
-<section id="code" class="block">
-  <p class="kicker">05 · Open code</p>
+<section id="tests" class="block">
+  <p class="kicker">05 · Lab tests & proofs</p>
+  <h2>Stress-Tested, <span class="amber">On Video</span></h2>
+  <p>Real benchmark runs, not claims. YuNet detection was stress-tested against blur, noise and distance — and the full pipeline was timed on CPU. Watch the live execution.</p>
+  <figure class="card wide reveal">
+    <video src="assets/test-live-execution.mp4" poster="assets/poster-live.jpg" controls preload="none" playsinline></video>
+    <figcaption>▶ Live execution record — the actual benchmark run, unedited</figcaption>
+  </figure>
+  <div class="grid2">
+    <figure class="card reveal">
+      <img src="assets/test-robustness-strip-800.jpg" alt="12-panel robustness proof: face detection under increasing blur, noise and simulated distance, with detection boxes" loading="lazy">
+      <figcaption>Blur (k=0–21) · Noise (σ=0–60) · Distance (573–51 px) — green = detected</figcaption>
+    </figure>
+    <figure class="card reveal">
+      <img src="assets/test-charts-800.jpg" alt="Charts: detection rate under stress and per-stage pipeline speed in milliseconds" loading="lazy">
+      <figcaption>Detection rate: blur 100% · noise 60% · distance 100% — pipeline 2.9 FPS on CPU</figcaption>
+    </figure>
+  </div>
+  <h3>Benchmark results</h3>
+  <p class="swipe-hint">← swipe to see full table →</p>
+  <div class="table-wrap reveal">
+  <table>
+    <thead><tr><th>Stress test</th><th>Result</th><th>Limit found</th></tr></thead>
+    <tbody>
+      <tr><td>Gaussian blur k = 0 → 21</td><td>✅ 6/6 detected</td><td>None — detected even at extreme blur</td></tr>
+      <tr><td>Gaussian noise σ = 0 → 60</td><td>✅ 3/5 detected</td><td>Fails at σ ≥ 40</td></tr>
+      <tr><td>Simulated distance (face 573 → 51 px)</td><td>✅ 5/5 detected</td><td>Detected down to 51 px wide</td></tr>
+      <tr><td>YuNet detect (CPU)</td><td>216.4 ms</td><td rowspan="4">Full pipeline: 347.7 ms<br>= <strong>2.9 FPS</strong> on CPU</td></tr>
+      <tr><td>SFace embedding</td><td>36.7 ms</td></tr>
+      <tr><td>Denoise</td><td>83.0 ms</td></tr>
+      <tr><td>FSRCNN ×4 super-resolution</td><td>11.6 ms</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">Honest note: detection is tougher than it looks here — recognition (telling <em>who</em>) is the harder problem, as the CCTV tests above show. Detection = “a face is there”; recognition = “whose face”.</p>
+</section>
+
+<section id="code" class="block alt">
+  <p class="kicker">06 · Open code</p>
   <h2>Run it yourself</h2>
   <p>Two small Python modules. Models download automatically from public sources (YuNet, SFace, FSRCNN).</p>
   <div class="codegrid">
@@ -196,6 +234,6 @@ print(s.identify_track(frames_12))</code></pre>
   <button id="toTop" aria-label="Back to top">↑</button>
 </footer>
 
-<script src="app.js?v=2"></script>
+<script src="app.js?v=3"></script>
 </body>
 </html>
