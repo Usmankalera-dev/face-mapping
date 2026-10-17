@@ -12,7 +12,7 @@
 <meta property="og:image" content="assets/ai-faces-478-mesh.png">
 <meta name="theme-color" content="#0b0f14">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
-<link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
 <div id="progress"></div>
@@ -24,6 +24,7 @@
   <nav class="links" id="navlinks">
     <a href="#landmarks">68-Point</a>
     <a href="#neural">478 Neural Mesh</a>
+    <a href="#body3d">Body + 3D</a>
     <a href="#cctv">CCTV System</a>
     <a href="#sachi">SachiEnhance</a>
     <a href="#tests">Lab Tests</a>
@@ -44,7 +45,7 @@
     <div class="stats">
       <div><b>68</b><span>landmark points</span></div>
       <div><b>478</b><span>neural mesh points</span></div>
-      <div><b>3</b><span>face models tested</span></div>
+      <div><b>17</b><span>body pose keypoints</span></div>
       <div><b>0</b><span>fake results</span></div>
     </div>
   </div>
@@ -89,8 +90,25 @@
   </div>
 </section>
 
-<section id="cctv" class="block">
-  <p class="kicker">03 · Real-world system</p>
+<section id="body3d" class="block">
+  <p class="kicker">03 · Beyond the face</p>
+  <h2>Full-Body Pose <span class="amber">+ 3D</span> Mesh</h2>
+  <p>Face mapping is only the start. <strong>YOLOv8-pose</strong> maps 17 body keypoints — shoulders, elbows, wrists, hips, knees, ankles — and the 478-point neural mesh carries real <strong>depth (x, y, z)</strong>, rendered here as a rotating 3D point cloud.</p>
+  <div class="grid2">
+    <figure class="card reveal">
+      <img src="assets/fullbody-pose.jpg" alt="Full-body pose estimation: 17 amber keypoints and skeleton over a standing person" loading="lazy">
+      <figcaption>17/17 keypoints detected · avg confidence 0.97</figcaption>
+    </figure>
+    <figure class="card reveal">
+      <video src="assets/mesh-3d-rotate.mp4?v=1" poster="assets/poster-3d.jpg" controls preload="none" playsinline></video>
+      <figcaption>▶ 478 landmarks in true 3D — rotating point cloud (x, y, z from the neural model)</figcaption>
+    </figure>
+  </div>
+  <p class="note">Why it matters: pose unlocks gait analysis, fall detection and activity recognition — and 3D landmarks enable head-pose estimation and AR face filters. Same lab, bigger canvas.</p>
+</section>
+
+<section id="cctv" class="block alt">
+  <p class="kicker">04 · Real-world system</p>
   <h2>CCTV Face Recognition v2</h2>
   <p>A complete pipeline: <strong>YuNet</strong> detection → tracking → <strong>SachiEnhance</strong> → <strong>SFace</strong> recognition → best-frame selection → quality gate. Tested honestly on night-vision CCTV frames.</p>
   <figure class="card wide reveal">
@@ -125,7 +143,7 @@
 </section>
 
 <section id="sachi" class="block alt">
-  <p class="kicker">04 · The enhancement method</p>
+  <p class="kicker">05 · The enhancement method</p>
   <h2>SachiEnhance <span class="amber">v2</span></h2>
   <p><em>Sachi</em> means “truthful”. A faithful tiny-face enhancer for recognition: light denoise + FSRCNN super-resolution. No hallucination, no contrast tricks — because for <strong>recognition</strong>, pretty lies hurt and honest pixels help.</p>
   <div class="grid2">
@@ -160,7 +178,7 @@
 </section>
 
 <section id="tests" class="block">
-  <p class="kicker">05 · Lab tests & proofs</p>
+  <p class="kicker">06 · Lab tests & proofs</p>
   <h2>Stress-Tested, <span class="amber">On Video</span></h2>
   <p>Real benchmark runs, not claims. YuNet detection was stress-tested against blur, noise and distance — and the full pipeline was timed on CPU. Watch the live execution.</p>
   <figure class="card wide reveal">
@@ -197,7 +215,7 @@
 </section>
 
 <section id="code" class="block alt">
-  <p class="kicker">06 · Open code</p>
+  <p class="kicker">07 · Open code</p>
   <h2>Run it yourself</h2>
   <p>Two small Python modules. Models download automatically from public sources (YuNet, SFace, FSRCNN).</p>
   <div class="codegrid">
