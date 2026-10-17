@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Face Mapping Lab — Usman Kalera</title>
+<meta name="description" content="Face Mapping Lab by Usman Kalera: 68-point landmark mapping, 478-point neural face mesh, and an honest CCTV face-recognition system with SachiEnhance faithful enhancement.">
+<meta name="author" content="Usman Kalera">
+<meta property="og:title" content="Face Mapping Lab — Usman Kalera">
+<meta property="og:description" content="68-point landmarks, 478-point neural mesh, and CCTV face recognition — built and honestly tested.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/ai-faces-478-mesh.png">
+<meta name="theme-color" content="#0b0f14">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+<link rel="stylesheet" href="styles.css?v=1">
+</head>
+<body>
+<div id="progress"></div>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="top">
+  <a class="brand" href="#top"><span class="logo">UK<span class="dot">.</span></span> Face Mapping Lab</a>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <nav class="links" id="navlinks">
+    <a href="#landmarks">68-Point</a>
+    <a href="#neural">478 Neural Mesh</a>
+    <a href="#cctv">CCTV System</a>
+    <a href="#sachi">SachiEnhance</a>
+    <a href="#code">Code</a>
+  </nav>
+</header>
+
+<main id="main">
+<section class="hero">
+  <div class="hero-inner">
+    <p class="kicker">Computer Vision · Face Analysis</p>
+    <h1>Face Mapping <span class="amber">Lab</span></h1>
+    <p class="lede">Real neural face mapping — 68-point landmarks, 478-point neural mesh, and a CCTV face-recognition system that tells the truth about tiny faces. Built by <strong>Usman Kalera</strong>.</p>
+    <div class="cta-row">
+      <a class="btn" href="#cctv">See the CCTV system</a>
+      <a class="btn ghost" href="#code">Get the code</a>
+    </div>
+    <div class="stats">
+      <div><b>68</b><span>landmark points</span></div>
+      <div><b>478</b><span>neural mesh points</span></div>
+      <div><b>3</b><span>face models tested</span></div>
+      <div><b>0</b><span>fake results</span></div>
+    </div>
+  </div>
+  <div class="hero-media">
+    <img src="assets/ai-faces-478-mesh.png" alt="478-point neural face mesh on three AI-generated faces" fetchpriority="high">
+  </div>
+</section>
+
+<section id="landmarks" class="block">
+  <p class="kicker">01 · Landmark detection</p>
+  <h2>68-Point Face Mapping</h2>
+  <p>Classic facial landmark detection with a neural 2D-FAN model — jaw, brows, eyes, nose and mouth mapped with a Delaunay mesh. Works on single faces and groups.</p>
+  <div class="grid2">
+    <figure class="card reveal">
+      <img src="assets/ai-face-mapping.png" alt="68 facial landmarks with Delaunay mesh on a single AI-generated face" loading="lazy">
+      <figcaption>Single face · 68 landmarks + Delaunay mesh</figcaption>
+    </figure>
+    <figure class="card reveal">
+      <img src="assets/ai-faces-multi-mapping.png" alt="68 facial landmarks mapped on three faces in a group photo" loading="lazy">
+      <figcaption>Multi-face · 3 faces × 68 landmarks</figcaption>
+    </figure>
+  </div>
+  <figure class="card wide reveal">
+    <video src="assets/ai-face-mapping-video.mp4" controls preload="metadata" playsinline></video>
+    <figcaption>Per-frame 68-point tracking on video</figcaption>
+  </figure>
+</section>
+
+<section id="neural" class="block alt">
+  <p class="kicker">02 · Dense 3D-style mesh</p>
+  <h2>478-Point Neural Mesh</h2>
+  <p>A dense “neurological-style” face mesh — 478 landmarks per face from a neural face-landmarker model, rendered as a glowing wireframe. Then tracked across every video frame.</p>
+  <div class="grid2">
+    <figure class="card reveal">
+      <img src="assets/ai-faces-478-mesh.png" alt="478-point neural mesh wireframe over three AI-generated faces" loading="lazy">
+      <figcaption>478 points per face · neural mesh</figcaption>
+    </figure>
+    <figure class="card reveal">
+      <video src="assets/ai-neural-mesh-video.mp4" controls preload="metadata" playsinline></video>
+      <figcaption>Neural mesh tracked on video, frame by frame</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="cctv" class="block">
+  <p class="kicker">03 · Real-world system</p>
+  <h2>CCTV Face Recognition v2</h2>
+  <p>A complete pipeline: <strong>YuNet</strong> detection → tracking → <strong>SachiEnhance</strong> → <strong>SFace</strong> recognition → best-frame selection → quality gate. Tested honestly on night-vision CCTV frames.</p>
+  <figure class="card wide reveal">
+    <img src="assets/cctv-software-v2.png" alt="CCTV software v2 interface: night-vision frame with detected face, best-frame verdict UNKNOWN flagged for review" loading="lazy">
+    <figcaption>Live system output — face detected at 32×40 px, verdict: UNKNOWN → flagged for human review</figcaption>
+  </figure>
+  <h3>The honest test</h3>
+  <div class="table-wrap reveal">
+  <table>
+    <thead><tr><th>Test</th><th>Similarity</th><th>Result</th></tr></thead>
+    <tbody>
+      <tr><td>Parking-lot frame (person too far)</td><td>—</td><td>0 faces detected — genuinely undetectable</td></tr>
+      <tr><td>Entrance frame, raw 32×40 px face</td><td>0.342</td><td>UNKNOWN (threshold 0.40)</td></tr>
+      <tr><td>+ SachiEnhance (denoise + faithful SR)</td><td>0.365</td><td>UNKNOWN — improved, still below threshold</td></tr>
+      <tr><td>+ Real-ESRGAN (GAN hallucination)</td><td>0.182</td><td>WORSE — GAN invents fake identity details</td></tr>
+      <tr><td>Best-frame over 12-frame track</td><td>0.365</td><td>UNKNOWN → flagged for review</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">Key finding: at 32 px, software can help a little — but it cannot invent missing identity. A good system says <em>“I don’t know, a human should check”</em> instead of guessing wrong. That honesty is the feature.</p>
+  <div class="grid2">
+    <figure class="card reveal">
+      <img src="assets/cctv-test-result.png" alt="First CCTV test: face detected at entrance, similarity 0.34 UNKNOWN" loading="lazy">
+      <figcaption>First honest test — detection works, recognition correctly uncertain</figcaption>
+    </figure>
+    <figure class="card reveal">
+      <img src="assets/cctv-fix-result.png" alt="CCTV frame with super-resolution enhancement applied to the detected face" loading="lazy">
+      <figcaption>Super-resolution enhancement pass</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="sachi" class="block alt">
+  <p class="kicker">04 · The enhancement method</p>
+  <h2>SachiEnhance <span class="amber">v2</span></h2>
+  <p><em>Sachi</em> means “truthful”. A faithful tiny-face enhancer for recognition: light denoise + FSRCNN super-resolution. No hallucination, no contrast tricks — because for <strong>recognition</strong>, pretty lies hurt and honest pixels help.</p>
+  <div class="grid2">
+    <figure class="card reveal">
+      <img src="assets/cctv-crop-compare.png" alt="Side by side: blurry original 32px face crop versus super-resolved crop" loading="lazy">
+      <figcaption>Left: raw 32 px crop · Right: SachiEnhance output</figcaption>
+    </figure>
+    <figure class="card reveal">
+      <img src="assets/cctv-srcrop-v2.png" alt="Real-ESRGAN output on the tiny face: sharper but hallucinated plasticky features" loading="lazy">
+      <figcaption>What GANs do: sharper, but fake — similarity dropped to 0.182</figcaption>
+    </figure>
+  </div>
+  <h3>What helped vs what hurt</h3>
+  <div class="table-wrap reveal">
+  <table>
+    <thead><tr><th>Technique</th><th>Δ similarity</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td>Light denoise + FSRCNN (SachiEnhance)</td><td>+0.031</td><td>✅ helps — faithful only</td></tr>
+      <tr><td>Flip-averaged embeddings (TTA)</td><td>small +</td><td>✅ helps</td></tr>
+      <tr><td>Best-frame over track</td><td>+0.010</td><td>✅ helps slightly</td></tr>
+      <tr><td>Real-ESRGAN hallucination</td><td>−0.161</td><td>❌ invents wrong identity</td></tr>
+      <tr><td>CLAHE contrast boost</td><td>−0.111</td><td>❌ amplifies noise</td></tr>
+      <tr><td>Enhancing the enrollment photo</td><td>very −</td><td>❌ never enhance clean references</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <figure class="card wide reveal">
+    <img src="assets/sachi-v2.png" alt="CCTV frame processed with SachiEnhance v2 pipeline" loading="lazy">
+    <figcaption>SachiEnhance v2 full pipeline output</figcaption>
+  </figure>
+</section>
+
+<section id="code" class="block">
+  <p class="kicker">05 · Open code</p>
+  <h2>Run it yourself</h2>
+  <p>Two small Python modules. Models download automatically from public sources (YuNet, SFace, FSRCNN).</p>
+  <div class="codegrid">
+    <div class="codecard reveal">
+      <h3>cctv_software.py</h3>
+      <p>Full v2 system: enroll → identify_frame → identify_track with quality gate.</p>
+<pre><code>from cctv_software import CCTVFaceRecognition
+s = CCTVFaceRecognition()
+s.enroll("person-1", clean_photo)
+print(s.identify_frame(cctv_frame))
+# (None, 0.365, 0.63, 'UNKNOWN -&gt; flag for review')
+print(s.identify_track(frames_12))</code></pre>
+    </div>
+    <div class="codecard reveal">
+      <h3>sachi_enhance.py</h3>
+      <p>The faithful enhancer in 10 lines.</p>
+<pre><code>def sachi_enhance(crop):
+    d = cv2.fastNlMeansDenoisingColored(
+        crop, None, 4, 4, 7, 21)
+    return sr_model().upsample(d)  # FSRCNN x4</code></pre>
+    </div>
+  </div>
+  <div class="cta-row">
+    <a class="btn" href="https://github.com/Usmankalera-dev/face-mapping" target="_blank" rel="noopener">View on GitHub</a>
+    <a class="btn ghost" href="https://usmankalera-dev.github.io/portfolio/" target="_blank" rel="noopener">My portfolio</a>
+  </div>
+  <p class="note">Note: all faces shown are AI-generated test faces, never a real person’s photo. The pipeline works on any face image or video.</p>
+</section>
+</main>
+
+<footer>
+  <p><strong>Face Mapping Lab</strong> · built by <a href="https://usmankalera-dev.github.io/portfolio/" target="_blank" rel="noopener">Usman Kalera</a> · Lahore, Pakistan</p>
+  <p class="tiny">YuNet · SFace · FSRCNN · MediaPipe Face Landmarker · 2D-FAN — all open models. Results reported honestly, including the failures.</p>
+  <button id="toTop" aria-label="Back to top">↑</button>
+</footer>
+
+<script src="app.js?v=1"></script>
+</body>
+</html>
